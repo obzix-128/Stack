@@ -5,9 +5,9 @@
 
 #include <stdlib.h>
 
-ErrorNumber StackPush(StackInf* myStack, StackElem_t element_value);
-ErrorNumber StackPop (StackInf* myStack, StackElem_t* element_value);
+ErrorNumber StackPush(StackInf* my_stack, StackElem_t element_value);
+ErrorNumber StackPop (StackInf* my_stack, StackElem_t* element_value);
 
-ErrorNumber StackMemory(StackInf* myStack);
+ErrorNumber StackMemory(StackInf* my_stack);
 
 #endif // PUSHANDPOP_H

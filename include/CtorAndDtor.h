@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-ErrorNumber StackCtor(StackInf* myStack);
-ErrorNumber StackDtor(StackInf* myStack);
+ErrorNumber StackCtor(StackInf* my_stack);
+ErrorNumber StackDtor(StackInf* my_stack);
 
 #endif // CTORANDDTOR_H

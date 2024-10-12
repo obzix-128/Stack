@@ -13,9 +13,13 @@
 #ifdef _DEBUG_HASH_DJB
 #define _CHECK_HASH_DJB do \
                         { \
-                        int64_t check_hash_djb = myStack->hash_djb; \
-                        calculateHash(myStack); \
-                        if(check_hash_djb != myStack->hash_djb) \
+                        int64_t check_hash_djb = my_stack->hash_djb; \
+                        check_error = calculateHash(my_stack); \
+                        if(check_error != NO_ERROR) \
+                        { \
+                            return check_error; \
+                        } \
+                        if(check_hash_djb != my_stack->hash_djb) \
                         { \
                             return HASH_ERROR; \
                         } \

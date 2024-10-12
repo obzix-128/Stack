@@ -2,42 +2,42 @@
 #include "../include/Dump.h"
 
 
-bool StackVerificator(StackInf* myStack)
+ErrorNumber StackVerificator(StackInf* my_stack)
 {
-    if(myStack == NULL)
+    if(my_stack == NULL)
     {
-        StackDump(myStack);
-        return true;
+        StackDump(my_stack);
+        return NULL_ADDRESS_ERROR;
     }
-    if(myStack->data == NULL)
+    if(my_stack->data == NULL)
     {
-        StackDump(myStack);
-        return true;
+        StackDump(my_stack);
+        return NULL_ADDRESS_ERROR;
     }
-    if(myStack->size < 0)
+    if(my_stack->size < 0)
     {
-        StackDump(myStack);
-        return true;
+        StackDump(my_stack);
+        return CHECK_FOUND_ERROR;
     }
-    if(myStack->capacity < MIN_STACK_SIZE)
+    if(my_stack->capacity < MIN_STACK_SIZE)
     {
-        StackDump(myStack);
-        return true;
+        StackDump(my_stack);
+        return CHECK_FOUND_ERROR;
     }
-    if(myStack->size > myStack->capacity)
+    if(my_stack->size > my_stack->capacity)
     {
-        StackDump(myStack);
-        return true;
+        StackDump(my_stack);
+        return CHECK_FOUND_ERROR;
     }
 
     #ifdef _DEBUG_CHICK_CHIRICK
-    int* chick_chirick_in_struct_one = (int*)&(myStack->chick_chirick_one);
-    int* chick_chirick_in_struct_two = (int*)&(myStack->chick_chirick_two);
+    int* chick_chirick_in_struct_one = (int*)&(my_stack->chick_chirick_one);
+    int* chick_chirick_in_struct_two = (int*)&(my_stack->chick_chirick_two);
 
-    int* chick_chirick_before_stack = (int*)myStack->full_data;
-    int* chick_chirick_after_stack  = (int*)(((char*)myStack->full_data) +
-         SIZE_CHICK_CHIRICK + myStack->capacity * (int)sizeof(StackElem_t) +
-         (8 - myStack->capacity * (int)sizeof(StackElem_t)) % 8);
+    int* chick_chirick_before_stack = (int*)my_stack->full_data;
+    int* chick_chirick_after_stack  = (int*)(((char*)my_stack->full_data) +
+         SIZE_CHICK_CHIRICK + my_stack->capacity * (int)sizeof(StackElem_t) +
+         (8 - my_stack->capacity * (int)sizeof(StackElem_t)) % 8);
 
     for(int i = 0; i < SIZE_CHICK_CHIRICK / (int)sizeof(int); i++)
     {
@@ -46,11 +46,11 @@ bool StackVerificator(StackInf* myStack)
            chick_chirick_before_stack [i] != BAD_BEDA ||
            chick_chirick_after_stack  [i] != BAD_BEDA)
         {
-            StackDump(myStack);
-            return true;
+            StackDump(my_stack);
+            return CHECK_FOUND_ERROR;
         }
     }
     #endif // _DEBUG_CHICK_CHIRICK
 
-    return false;
+    return NO_ERROR;
 }

@@ -6,42 +6,42 @@
 
 int main(void)
 {
-    StackInf myStack = {};
+    StackInf my_stack = {};
     ErrorNumber check_error = NO_ERROR;
 
-    check_error = StackCtor(&myStack);
+    check_error = StackCtor(&my_stack);
     if(check_error != NO_ERROR)
     {
         return check_error;
     }
 
-    check_error = StackPush(&myStack, 65);
+    check_error = StackPush(&my_stack, 65);
     if(check_error != NO_ERROR)
     {
         #ifdef _DEBUG_CHICK_CHIRICK
-        free(myStack.full_data);
+        free(my_stack.full_data);
         #else
-        free(myStack.data);
+        free(my_stack.data);
         #endif // _DEBUG_CHICK_CHIRICK
         return check_error;
     }
 
     StackElem_t elem_pop = 0;
 
-    check_error = StackPop(&myStack, &elem_pop);
+    check_error = StackPop(&my_stack, &elem_pop);
     if(check_error != NO_ERROR)
     {
         #ifdef _DEBUG_CHICK_CHIRICK
-        free(myStack.full_data);
+        free(my_stack.full_data);
         #else
-        free(myStack.data);
+        free(my_stack.data);
         #endif // _DEBUG_CHICK_CHIRICK
         return check_error;
     }
 
-    StackDump(&myStack);
+    StackDump(&my_stack);
 
-    check_error = StackDtor(&myStack);
+    check_error = StackDtor(&my_stack);
     if(check_error != NO_ERROR)
     {
         return check_error;
